@@ -2326,7 +2326,7 @@ static void onConsoleRamCommand(Console* console, const char* param)
 	printLine(console);
 
 	printTable(console, "\n+-----------------------------------+" \
-						"\n|           80K RAM LAYOUT          |" \
+						"\n|          128K RAM LAYOUT          |" \
 						"\n+-------+-------------------+-------+" \
 						"\n| ADDR  | INFO              | SIZE  |" \
 						"\n+-------+-------------------+-------+");
@@ -2365,7 +2365,7 @@ static void onConsoleVRamCommand(Console* console, const char* param)
 	printLine(console);
 
 	printTable(console, "\n+-----------------------------------+" \
-						"\n|           16K VRAM LAYOUT         |" \
+						"\n|           32K VRAM LAYOUT         |" \
 						"\n+-------+-------------------+-------+" \
 						"\n| ADDR  | INFO              | SIZE  |" \
 						"\n+-------+-------------------+-------+");
@@ -2404,8 +2404,8 @@ static const struct
 #if defined(CAN_OPEN_URL)
 	{"wiki", 	NULL, "open github wiki page", 		onConsoleWikiCommand},
 #endif
-	{"ram", 	NULL, "show 80K RAM layout", 		onConsoleRamCommand},
-	{"vram", 	NULL, "show 16K VRAM layout", 		onConsoleVRamCommand},
+	{"ram", 	NULL, "show 128K RAM layout", 		onConsoleRamCommand},
+	{"vram", 	NULL, "show 32K VRAM layout", 		onConsoleVRamCommand},
 	{"exit", 	"quit", "exit the application", 	onConsoleExitCommand},
 	{"new", 	NULL, "create new cart",			onConsoleNewCommand},
 	{"load", 	NULL, "load cart", 					onConsoleLoadCommand},

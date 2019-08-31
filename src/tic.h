@@ -51,8 +51,8 @@
 #define TIC_HOST "tic.computer"
 #define TIC_COPYRIGHT "http://" TIC_HOST " (C) 2017"
 
-#define TIC_VRAM_SIZE (16*1024) //16K
-#define TIC_RAM_SIZE (TIC_VRAM_SIZE+80*1024) //16K+80K
+#define TIC_VRAM_SIZE (32*1024) //32K
+#define TIC_RAM_SIZE (TIC_VRAM_SIZE+128*1024) //32K+120K
 #define TIC_FONT_WIDTH 6
 #define TIC_FONT_HEIGHT 6
 #define TIC_ALTFONT_WIDTH 4
@@ -464,7 +464,7 @@ typedef union
 		tic_music music;
 		tic_sound_state sound_state;
 		tic_flags flags;
-		u8 free[16*1024 - sizeof(tic_flags)];
+		u8 free[32*1024 - sizeof(tic_flags)];
 	};
 
 	u8 data[TIC_RAM_SIZE];
