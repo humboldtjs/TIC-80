@@ -1009,47 +1009,47 @@ static void drawPalette(Sprite* sprite, s32 x, s32 y)
 			sprite->tic->api.rect(sprite->tic, offsetX - 2, rect.y + rect.h+2, PALETTE_CELL_SIZE+3, 1, (tic_color_black));		
 	}
 
-	{
-		static const u8 Icon[] = 
-		{
-			0b01000000,
-			0b11111111,
-			0b00000000,
-			0b00000010,
-			0b11111111,
-			0b00000000,
-			0b00010000,
-			0b11111111,
-		};
+	// {
+	// 	static const u8 Icon[] = 
+	// 	{
+	// 		0b01000000,
+	// 		0b11111111,
+	// 		0b00000000,
+	// 		0b00000010,
+	// 		0b11111111,
+	// 		0b00000000,
+	// 		0b00010000,
+	// 		0b11111111,
+	// 	};
 
-		tic_rect rect = {x + PALETTE_WIDTH + 3, y + (PALETTE_HEIGHT-8)/2-1, 8, 8};
+	// 	tic_rect rect = {x + PALETTE_WIDTH + 3, y + (PALETTE_HEIGHT-8)/2-1, 8, 8};
 
-		bool down = false;
-		bool over = false;
-		if(checkMousePos(&rect))
-		{
-			setCursor(tic_cursor_hand);
-			over = true;
+	// 	bool down = false;
+	// 	bool over = false;
+	// 	if(checkMousePos(&rect))
+	// 	{
+	// 		setCursor(tic_cursor_hand);
+	// 		over = true;
 
-			showTooltip("EDIT PALETTE");
+	// 		showTooltip("EDIT PALETTE");
 
-			if(checkMouseDown(&rect, tic_mouse_left))
-				down = true;
+	// 		if(checkMouseDown(&rect, tic_mouse_left))
+	// 			down = true;
 
-			if(checkMouseClick(&rect, tic_mouse_left))
-				sprite->editPalette = !sprite->editPalette;
-		}
+	// 		if(checkMouseClick(&rect, tic_mouse_left))
+	// 			sprite->editPalette = !sprite->editPalette;
+	// 	}
 
-		if(sprite->editPalette || down)
-		{
-			drawBitIcon(rect.x, rect.y+1, Icon, (over ? tic_color_light_blue : tic_color_white));
-		}
-		else
-		{
-			drawBitIcon(rect.x, rect.y+1, Icon, (tic_color_black));
-			drawBitIcon(rect.x, rect.y, Icon, (over ? tic_color_light_blue : tic_color_white));			
-		}
-	}
+	// 	if(sprite->editPalette || down)
+	// 	{
+	// 		drawBitIcon(rect.x, rect.y+1, Icon, (over ? tic_color_light_blue : tic_color_white));
+	// 	}
+	// 	else
+	// 	{
+	// 		drawBitIcon(rect.x, rect.y+1, Icon, (tic_color_black));
+	// 		drawBitIcon(rect.x, rect.y, Icon, (over ? tic_color_light_blue : tic_color_white));			
+	// 	}
+	// }
 }
 
 static void drawPaletteOvr(Sprite* sprite, s32 x, s32 y)
