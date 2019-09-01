@@ -78,7 +78,7 @@ static void drawSwitch(Sfx* sfx, s32 x, s32 y, const char* label, s32 value, voi
 				set(sfx, -1);
 		}
 
-		drawBitIcon(rect.x, rect.y, LeftArrow, (tic_color_dark_gray));
+		drawBitIcon(rect.x, rect.y, LeftArrow, (tic_color_blue));
 	}
 
 	{
@@ -100,7 +100,7 @@ static void drawSwitch(Sfx* sfx, s32 x, s32 y, const char* label, s32 value, voi
 				set(sfx, +1);
 		}
 
-		drawBitIcon(rect.x, rect.y, RightArrow, (tic_color_dark_gray));
+		drawBitIcon(rect.x, rect.y, RightArrow, (tic_color_blue));
 	}
 }
 
@@ -140,7 +140,7 @@ static void drawStereoSwitch(Sfx* sfx, s32 x, s32 y)
 				effect->stereo_left = !effect->stereo_left;
 		}
 
-		sfx->tic->api.text(sfx->tic, "L", x, y, effect->stereo_left ? tic_color_dark_gray : tic_color_white, false);
+		sfx->tic->api.text(sfx->tic, "L", x, y, effect->stereo_left ? tic_color_gray : tic_color_white, false);
 	}
 
 	{
@@ -156,7 +156,7 @@ static void drawStereoSwitch(Sfx* sfx, s32 x, s32 y)
 				effect->stereo_right = !effect->stereo_right;
 		}
 
-		sfx->tic->api.text(sfx->tic, "R", x, y, effect->stereo_right ? tic_color_dark_gray : tic_color_white, false);
+		sfx->tic->api.text(sfx->tic, "R", x, y, effect->stereo_right ? tic_color_gray : tic_color_white, false);
 	}
 }
 
@@ -195,7 +195,7 @@ static void setLoopSize(Sfx* sfx, s32 delta)
 
 static void drawLoopPanel(Sfx* sfx, s32 x, s32 y)
 {
-	sfx->tic->api.text(sfx->tic, "LOOP:", x, y, (tic_color_dark_gray), false);
+	sfx->tic->api.text(sfx->tic, "LOOP:", x, y, (tic_color_gray), false);
 
 	enum {Gap = 2};
 
@@ -273,7 +273,7 @@ static void drawWaveButtons(Sfx* sfx, s32 x, s32 y)
 		}
 
 		sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, 
-			active ? (tic_color_red) : over ? (tic_color_gray) : (tic_color_dark_gray));
+			active ? (tic_color_white) : over ? (tic_color_gray) : (tic_color_gray));
 
 		{
 			enum{Size = 5};
@@ -293,7 +293,7 @@ static void drawWaveButtons(Sfx* sfx, s32 x, s32 y)
 				}
 			}
 
-			drawBitIcon(iconRect.x, iconRect.y, EmptyIcon, (over ? tic_color_gray : tic_color_dark_gray));
+			drawBitIcon(iconRect.x, iconRect.y, EmptyIcon, (over ? tic_color_light_blue : tic_color_blue));
 		}
 
 		{
@@ -346,7 +346,7 @@ static void drawCanvasTabs(Sfx* sfx, s32 x, s32 y)
 			}
 		}
 
-		sfx->tic->api.text(sfx->tic, Labels[i], rect.x, rect.y, i == sfx->canvasTab ? (tic_color_white) : (tic_color_dark_gray), false);
+		sfx->tic->api.text(sfx->tic, Labels[i], rect.x, rect.y, i == sfx->canvasTab ? (tic_color_white) : (tic_color_gray), false);
 	}
 
 	tic_sample* effect = getEffect(sfx);
@@ -367,7 +367,7 @@ static void drawCanvasTabs(Sfx* sfx, s32 x, s32 y)
 					effect->pitch16x++;
 			}
 
-			sfx->tic->api.fixed_text(sfx->tic, Label, rect.x, rect.y, (effect->pitch16x ? tic_color_white : tic_color_dark_gray), false);
+			sfx->tic->api.fixed_text(sfx->tic, Label, rect.x, rect.y, (effect->pitch16x ? tic_color_white : tic_color_gray), false);
 		}
 		break;
 	case SFX_ARPEGGIO_TAB:
@@ -384,7 +384,7 @@ static void drawCanvasTabs(Sfx* sfx, s32 x, s32 y)
 					effect->reverse++;
 			}
 
-			sfx->tic->api.text(sfx->tic, Label, rect.x, rect.y, (effect->reverse ? tic_color_white : tic_color_dark_gray), false);
+			sfx->tic->api.text(sfx->tic, Label, rect.x, rect.y, (effect->reverse ? tic_color_white : tic_color_gray), false);
 		}	
 		break;
 	default: break;
@@ -393,21 +393,21 @@ static void drawCanvasTabs(Sfx* sfx, s32 x, s32 y)
 
 static void drawCanvas(Sfx* sfx, s32 x, s32 y)
 {
-	sfx->tic->api.rect(sfx->tic, x, y, CANVAS_WIDTH, CANVAS_HEIGHT, (tic_color_dark_red));
-
-	for(s32 i = 0; i < CANVAS_HEIGHT; i += CANVAS_SIZE)
-		sfx->tic->api.line(sfx->tic, x, y + i, x + CANVAS_WIDTH, y + i, TIC_COLOR_BG);
-
-	for(s32 i = 0; i < CANVAS_WIDTH; i += CANVAS_SIZE)
-		sfx->tic->api.line(sfx->tic, x + i, y, x + i, y + CANVAS_HEIGHT, TIC_COLOR_BG);
+	sfx->tic->api.rect(sfx->tic, x, y, CANVAS_WIDTH, CANVAS_HEIGHT, (tic_color_blue));
 
 	{
 		tic_sfx_pos pos = sfx->tic->api.sfx_pos(sfx->tic, DEFAULT_CHANNEL);
 		s32 tickIndex = *(pos.data + sfx->canvasTab);
 
 		if(tickIndex >= 0)
-			sfx->tic->api.rect(sfx->tic, x + tickIndex * CANVAS_SIZE, y, CANVAS_SIZE + 1, CANVAS_HEIGHT + 1, (tic_color_white));
+			sfx->tic->api.rect(sfx->tic, x + tickIndex * CANVAS_SIZE + 1, y + 1, CANVAS_SIZE - 1, CANVAS_HEIGHT - 1, (tic_color_dark_red));
 	}
+
+	for(s32 i = 0; i < CANVAS_HEIGHT; i += CANVAS_SIZE)
+		sfx->tic->api.line(sfx->tic, x, y + i, x + CANVAS_WIDTH, y + i, TIC_COLOR_BG);
+
+	for(s32 i = 0; i < CANVAS_WIDTH; i += CANVAS_SIZE)
+		sfx->tic->api.line(sfx->tic, x + i, y, x + i, y + CANVAS_HEIGHT, TIC_COLOR_BG);
 
 	tic_rect rect = {x, y, CANVAS_WIDTH, CANVAS_HEIGHT};
 
@@ -448,26 +448,26 @@ static void drawCanvas(Sfx* sfx, s32 x, s32 y)
 		case SFX_VOLUME_TAB:
 			{
 				for(s32 j = 1, start = CANVAS_HEIGHT - CANVAS_SIZE; j <= CANVAS_ROWS - effect->data[i].volume; j++, start -= CANVAS_SIZE)
-					sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, y + 1 + start, CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_red));				
+					sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, y + 1 + start, CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_white));				
 			}
 			break;
 		case SFX_ARPEGGIO_TAB:
 			{
 				sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, 
-					y + 1 + (CANVAS_HEIGHT - (effect->data[i].arpeggio+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_red));
+					y + 1 + (CANVAS_HEIGHT - (effect->data[i].arpeggio+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_white));
 			}
 			break;
 		case SFX_PITCH_TAB:
 			{
 				for(s32 j = MIN(0, effect->data[i].pitch); j <= MAX(0, effect->data[i].pitch); j++)
 					sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, y + 1 + (CANVAS_HEIGHT/2 - (j+1)*CANVAS_SIZE), 
-						CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_red));
+						CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_white));
 			}
 			break;
 		case SFX_WAVE_TAB:
 			{
 				sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, 
-					y + 1 + (CANVAS_HEIGHT - (effect->data[i].wave+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_red));
+					y + 1 + (CANVAS_HEIGHT - (effect->data[i].wave+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_white));
 			}
 			break;
 		default: break;
@@ -547,7 +547,7 @@ static void drawPiano(Sfx* sfx, s32 x, s32 y)
 
 		if(index >= 0)
 			sfx->tic->api.rect(sfx->tic, rect->x, rect->y, rect->w - (white ? 1 : 0), rect->h, 
-				(sfx->play.active && effect->note == index ? tic_color_red : white ? tic_color_white : tic_color_black));
+				(sfx->play.active && effect->note == index ? tic_color_blue : white ? tic_color_white : tic_color_black));
 	}
 }
 
@@ -576,7 +576,7 @@ static void drawOctavePanel(Sfx* sfx, s32 x, s32 y)
 			}
 		}
 
-		sfx->tic->api.draw_char(sfx->tic, i + '1', rect.x, rect.y, (i == effect->octave ? tic_color_white : tic_color_dark_gray), false);
+		sfx->tic->api.draw_char(sfx->tic, i + '1', rect.x, rect.y, (i == effect->octave ? tic_color_white : tic_color_gray), false);
 	}
 }
 
@@ -814,7 +814,7 @@ static void drawModeTabs(Sfx* sfx)
 		if (sfx->tab == Tabs[i])
 			sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (tic_color_black));
 
-		drawBitIcon(rect.x, rect.y, Icons + i*Rows, (sfx->tab == Tabs[i] ? tic_color_white : over ? tic_color_dark_gray : tic_color_light_blue));
+		drawBitIcon(rect.x, rect.y, Icons + i*Rows, (sfx->tab == Tabs[i] ? tic_color_white : over ? tic_color_gray : tic_color_light_blue));
 	}
 }
 
@@ -849,7 +849,7 @@ static void drawSfxToolbar(Sfx* sfx)
 		char buf[] = "C#4";
 		sprintf(buf, "%s%i", Notes[effect->note], effect->octave+1);
 
-		sfx->tic->api.fixed_text(sfx->tic, buf, x, y, (over ? tic_color_dark_gray : tic_color_light_blue), false);
+		sfx->tic->api.fixed_text(sfx->tic, buf, x, y, (over ? tic_color_gray : tic_color_light_blue), false);
 	}
 
 	drawModeTabs(sfx);
@@ -912,10 +912,10 @@ static void drawWaveformBar(Sfx* sfx, s32 x, s32 y)
 				active = true;
 		}
 
-		sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (active ? tic_color_red : tic_color_white));
+		sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (active ? tic_color_light_blue : tic_color_white));
 
 		if(sfx->waveform.index == i)
-			sfx->tic->api.rect_border(sfx->tic, rect.x-2, rect.y-2, rect.w+4, rect.h+4, (tic_color_white));
+			sfx->tic->api.rect_border(sfx->tic, rect.x-2, rect.y-2, rect.w+4, rect.h+4, (tic_color_blue));
 
 		{
 			tic_waveform* wave = getWaveformById(sfx, i);
@@ -935,7 +935,7 @@ static void drawWaveformCanvas(Sfx* sfx, s32 x, s32 y)
 
 	tic_rect rect = {x, y, Width, Height};
 
-	sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (tic_color_dark_red));
+	sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (tic_color_blue));
 
 	for(s32 i = 0; i < Height; i += CANVAS_SIZE)
 		sfx->tic->api.line(sfx->tic, rect.x, rect.y + i, rect.x + Width, rect.y + i, TIC_COLOR_BG);
@@ -972,7 +972,7 @@ static void drawWaveformCanvas(Sfx* sfx, s32 x, s32 y)
 	{
 		s32 value = tic_tool_peek4(wave->data, i);
 		sfx->tic->api.rect(sfx->tic, x + i * CANVAS_SIZE + 1, 
-			y + 1 + (Height - (value+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_red));
+			y + 1 + (Height - (value+1)*CANVAS_SIZE), CANVAS_SIZE-1, CANVAS_SIZE-1, (tic_color_white));
 	}
 }
 

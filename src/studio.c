@@ -498,7 +498,7 @@ static void drawExtrabar(tic_mem* tic)
 		0b00000000,
 	};
 
-	static const s32 Colors[] = {8, 9, 6, 5, 5};
+	static const s32 Colors[] = {8, 8, 8, 8, 8};
 	static const StudioEvent Events[] = {TIC_TOOLBAR_CUT, TIC_TOOLBAR_COPY, TIC_TOOLBAR_PASTE,	TIC_TOOLBAR_UNDO, TIC_TOOLBAR_REDO};
 	static const char* Tips[] = {"CUT [ctrl+x]", "COPY [ctrl+c]", "PASTE [ctrl+v]", "UNDO [ctrl+z]", "REDO [ctrl+y]"};
 
@@ -507,7 +507,7 @@ static void drawExtrabar(tic_mem* tic)
 		tic_rect rect = {x + i*Size, y, Size, Size};
 
 		u8 bgcolor = (tic_color_white);
-		u8 color = (tic_color_light_blue);
+		u8 color = (tic_color_blue);
 
 		if(checkMousePos(&rect))
 		{
@@ -613,7 +613,7 @@ static void drawBankIcon(s32 x, s32 y)
 			if(i == impl.bank.indexes[mode])
 				tic->api.rect(tic, rect.x, rect.y, rect.w, rect.h, tic_color_red);
 
-			tic->api.draw_char(tic, '0' + i, rect.x+1, rect.y+1, i == impl.bank.indexes[mode] ? tic_color_white : over ? tic_color_red : tic_color_peach, false);
+			tic->api.draw_char(tic, '0' + i, rect.x+1, rect.y+1, i == impl.bank.indexes[mode] ? tic_color_white : over ? tic_color_red : tic_color_yellow, false);
 
 		}
 
@@ -649,12 +649,12 @@ static void drawBankIcon(s32 x, s32 y)
 				}
 			}
 
-			drawBitIcon(rect.x, rect.y, PinIcon, impl.bank.chained ? tic_color_black : over ? tic_color_dark_gray : tic_color_light_blue);
+			drawBitIcon(rect.x, rect.y, PinIcon, impl.bank.chained ? tic_color_black : over ? tic_color_dark_red : tic_color_blue);
 		}
 	}
 	else
 	{
-		drawBitIcon(x, y, Icon, over ? tic_color_red : tic_color_peach);
+		drawBitIcon(x, y, Icon, over ? tic_color_dark_red : tic_color_red);
 	}
 }
 
@@ -757,7 +757,7 @@ void drawToolbar(tic_mem* tic, u8 color, bool bg)
 		if(mode == i)
 			drawBitIcon(i * Size, 1, Icons + i * BITS_IN_BYTE, tic_color_black);
 
-		drawBitIcon(i * Size, 0, Icons + i * BITS_IN_BYTE, mode == i ? (tic_color_white) : (over ? (tic_color_dark_gray) : (tic_color_light_blue)));
+		drawBitIcon(i * Size, 0, Icons + i * BITS_IN_BYTE, mode == i ? (tic_color_white) : (over ? (tic_color_dark_red) : (tic_color_blue)));
 	}
 
 	if(mode >= 0) drawExtrabar(tic);
@@ -782,11 +782,11 @@ void drawToolbar(tic_mem* tic, u8 color, bool bg)
 	{
 		if(strlen(impl.tooltip.text))
 		{
-			impl.studio.tic->api.text(tic, impl.tooltip.text, TextOffset, 1, (tic_color_black), false);
+			impl.studio.tic->api.text(tic, impl.tooltip.text, TextOffset, 1, (tic_color_dark_red), false);
 		}
 		else
 		{
-			impl.studio.tic->api.text(tic, Names[mode], TextOffset, 1, (tic_color_dark_gray), false);
+			impl.studio.tic->api.text(tic, Names[mode], TextOffset, 1, (tic_color_black), false);
 		}
 	}
 }

@@ -39,8 +39,8 @@
 #include <emscripten.h>
 #endif
 
-#define CONSOLE_CURSOR_COLOR ((tic_color_red))
-#define CONSOLE_BACK_TEXT_COLOR ((tic_color_dark_gray))
+#define CONSOLE_CURSOR_COLOR ((tic_color_gray))
+#define CONSOLE_BACK_TEXT_COLOR ((tic_color_gray))
 #define CONSOLE_FRONT_TEXT_COLOR ((tic_color_white))
 #define CONSOLE_ERROR_TEXT_COLOR ((tic_color_red))
 #define CONSOLE_CURSOR_BLINK_PERIOD (TIC80_FRAMERATE)

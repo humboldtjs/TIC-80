@@ -99,7 +99,7 @@ static s32 drawWorldButton(Map* map, s32 x, s32 y)
 			setStudioMode(TIC_WORLD_MODE);
 	}
 
-	drawBitIcon(x, y, WorldIcon, over ? (tic_color_dark_gray) : (tic_color_light_blue));
+	drawBitIcon(x, y, WorldIcon, over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 
@@ -137,7 +137,7 @@ static s32 drawGridButton(Map* map, s32 x, s32 y)
 			map->canvas.grid = !map->canvas.grid;
 	}
 
-	drawBitIcon(x, y, GridIcon, map->canvas.grid ? (tic_color_black) : over ? (tic_color_dark_gray) : (tic_color_light_blue));
+	drawBitIcon(x, y, GridIcon, map->canvas.grid ? (tic_color_dark_green) : over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
@@ -192,7 +192,7 @@ static s32 drawSheetButton(Map* map, s32 x, s32 y)
 		}
 	}
 
-	drawBitIcon(rect.x, rect.y, sheetVisible(map) ? UpIcon : DownIcon, over ? (tic_color_dark_gray) : (tic_color_light_blue));
+	drawBitIcon(rect.x, rect.y, sheetVisible(map) ? UpIcon : DownIcon, over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
@@ -218,7 +218,7 @@ static s32 drawToolButton(Map* map, s32 x, s32 y, const u8* Icon, s32 width, con
 		}
 	}
 
-	drawBitIcon(rect.x, rect.y, Icon, map->mode == mode ? (tic_color_black) : over ? (tic_color_dark_gray) : (tic_color_light_blue));
+	drawBitIcon(rect.x, rect.y, Icon, map->mode == mode ? (tic_color_black) : over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
@@ -328,7 +328,7 @@ static void drawTileIndex(Map* map, s32 x, s32 y)
 	{
 		char buf[] = "#999";
 		sprintf(buf, "#%03i", index);
-		map->tic->api.text(map->tic, buf, x, y, (tic_color_light_blue), false);
+		map->tic->api.text(map->tic, buf, x-10, y, (tic_color_blue), false);
 	}
 }
 
@@ -836,6 +836,9 @@ static void drawGrid(Map* map)
 {
 	tic_mem* tic = map->tic;
 
+//	const u8 ColorMap[] = { 4, 4, 3, 2, 5, 4, 8, 15, 9, 8, 11, 10, 2, 9, 15, 14 };
+	const u8 ColorMap[] = { 4, 4, 3, 3, 5, 5, 8, 15, 9, 9, 11, 11, 2, 9, 15, 15 };
+
 	s32 scrollX = map->scroll.x % TIC_SPRITESIZE;
 	s32 scrollY = map->scroll.y % TIC_SPRITESIZE;
 
@@ -845,7 +848,7 @@ static void drawGrid(Map* map)
 			for(s32 i = 0; i < TIC80_WIDTH; i++)
 			{				
 				u8 color = tic->api.get_pixel(tic, i, j);
-				tic->api.pixel(tic, i, j, (color+1)%TIC_PALETTE_SIZE);
+				tic->api.pixel(tic, i, j, ColorMap[color]);
 			}
 	}
 
@@ -857,7 +860,7 @@ static void drawGrid(Map* map)
 				if((i+scrollY) % TIC_SPRITESIZE)
 				{
 					u8 color = tic->api.get_pixel(tic, j, i);
-					tic->api.pixel(tic, j, i, (color+1)%TIC_PALETTE_SIZE);					
+					tic->api.pixel(tic, j, i, ColorMap[color]);					
 				}
 			}
 	}

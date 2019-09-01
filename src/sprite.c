@@ -645,7 +645,7 @@ static void drawFlags(Sprite* sprite, s32 x, s32 y)
 		if(and & mask)
 			sprite->tic->api.rect(sprite->tic, rect.x+1, rect.y+1, Size-2, Size-2, over ? tic_color_white : tic_color_gray);
 
-		sprite->tic->api.draw_char(sprite->tic, '0' + i, rect.x + (Size+2), rect.y, tic_color_dark_gray, true);
+		sprite->tic->api.draw_char(sprite->tic, '0' + i, rect.x + (Size+2), rect.y, tic_color_gray, true);
 	}
 }
 
@@ -769,7 +769,7 @@ static void drawRGBSlider(Sprite* sprite, s32 x, s32 y, u8* value)
 		{
 			char buf[] = "FF";
 			sprintf(buf, "%02X", *value);
-			sprite->tic->api.text(sprite->tic, buf, x - 18, y - 2, (tic_color_dark_gray), false);
+			sprite->tic->api.text(sprite->tic, buf, x - 18, y - 2, (tic_color_gray), false);
 		}
 	}
 

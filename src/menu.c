@@ -150,7 +150,7 @@ static void drawTabDisabled(Menu* menu, s32 x, s32 y, s32 id)
 		}
 	}
 
-	tic->api.rect(tic, x, y-1, Width, Height+1, (tic_color_dark_gray));
+	tic->api.rect(tic, x, y-1, Width, Height+1, (tic_color_gray));
 	tic->api.pixel(tic, x, y+Height-1, (tic_color_blue));
 	tic->api.pixel(tic, x+Width-1, y+Height-1, (tic_color_blue));
 
@@ -174,7 +174,7 @@ static void drawTab(Menu* menu, s32 x, s32 y, s32 id)
 	{
 		char buf[] = "#1";
 		sprintf(buf, "#%i", id+1);
-		tic->api.fixed_text(tic, buf, x+2, y, (tic_color_gray), false);
+		tic->api.fixed_text(tic, buf, x+2, y, (tic_color_red), false);
 	}
 }
 

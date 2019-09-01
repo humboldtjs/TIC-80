@@ -1338,7 +1338,7 @@ static void drawFontButton(Code* code, s32 x, s32 y)
 	}
 
 
-	tic->api.draw_char(tic, 'F', x, y, over ? tic_color_dark_gray : tic_color_light_blue, code->altFont);
+	tic->api.draw_char(tic, 'F', x, y, over ? tic_color_dark_red : tic_color_blue, code->altFont);
 }
 
 static void drawCodeToolbar(Code* code)
@@ -1422,7 +1422,7 @@ static void drawCodeToolbar(Code* code)
 		if(active)
 			code->tic->api.rect(code->tic, rect.x, rect.y, Size, Size, (tic_color_blue));
 
-		drawBitIcon(rect.x, rect.y, Icons + i*BITS_IN_BYTE, active ? (tic_color_white) : (over ? (tic_color_dark_gray) : (tic_color_light_blue)));
+		drawBitIcon(rect.x, rect.y, Icons + i*BITS_IN_BYTE, active ? (tic_color_white) : (over ? (tic_color_dark_red) : (tic_color_blue)));
 	}
 
 	drawFontButton(code, TIC80_WIDTH - (Count+2) * Size, 1);
