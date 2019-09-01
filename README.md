@@ -1,19 +1,15 @@
-[![Build Status](https://travis-ci.org/nesbox/TIC-80.svg?branch=master)](https://travis-ci.org/nesbox/TIC-80)
-[![Build status](https://ci.appveyor.com/api/projects/status/1pflw77cjd8mqggb/branch/master?svg=true)](https://ci.appveyor.com/project/nesbox/tic-80)
-
-![TIC-80](https://tic.computer/img/logo64.png)
-**TIC-80 TINY COMPUTER** - [https://tic.computer/](https://tic.computer/)
+![TIC-MSX](https://tic.computer/img/logo64.png)
+**TIC-MSX TINY COMPUTER** - [https://tic.computer/](https://tic.computer/)
 
 # About
-TIC-80 is a **FREE** and **OPEN SOURCE** fantasy computer for making, playing and sharing tiny games.
-
-With TIC-80 you get built-in tools for development: code, sprites, maps, sound editors and the command line, which is enough to create a mini retro game.
+TIC-MSX is a **FREE** and **OPEN SOURCE** fantasy computer for prototyping games for an MSX (and making, playing and sharing tiny games), with roughly the specs of an MSX1 computer.
+With TIC-MSX you get built-in tools for development: code, sprites, maps, sound editors and the command line, which is enough to create a mini retro game.
 
 Games are packaged into a cartridge file, which can be easily distributed. TIC-80 works on all popular platforms. This means your cartridge can be played in any device.
 
 To make a retro styled game, the whole process of creation and execution takes place under some technical limitations: 240x136 pixel display, 16 color palette, 256 8x8 color sprites, 4 channel sound, etc.
 
-![TIC-80](https://user-images.githubusercontent.com/1101448/29687467-3ddc432e-8925-11e7-8156-5cec3700cc04.gif)
+![TIC-MSX](https://user-images.githubusercontent.com/1101448/29687467-3ddc432e-8925-11e7-8156-5cec3700cc04.gif)
 
 ### Features
 - Multiple programming languages: [Lua](https://www.lua.org),
@@ -26,31 +22,19 @@ To make a retro styled game, the whole process of creation and execution takes p
 - An aditional memory bank: load different assets from your cartridge while your game is executing
 
 # Binary Downloads
-You can download compiled versions for the major operating systems directly from our [releases page](https://github.com/nesbox/TIC-80/releases).
+You can download compiled versions for the major operating systems directly from our [releases page](https://github.com/humboldtjs/TIC-MSX/releases).
 
 # Pro Version
-To help support TIC-80 development, we have a [PRO Version](https://nesbox.itch.io/tic).
-This version has a few additional features and binaries can only be downloaded on [our Itch.io page](https://nesbox.itch.io/tic).
+TIC-MSX is based on TIC-80. If you want to support TIC-80 (and by extension TIC-MSX) development, the guys from nesbox have a [PRO Version](https://nesbox.itch.io/tic).
+This version has a few additional features and binaries can only be downloaded on [their Itch.io page](https://nesbox.itch.io/tic).
 
-For users who can't spend the money, we made it easy to build the pro version from the source code.
-
-### Pro features
-
-- Save/load cartridges in text format, and create your game in any editor you want, also useful for version control systems.
-- Even more memory banks: instead of having only 1 memory bank you have 8.
-- Export your game without editors, and then publish it to app stores (WIP).
-
-# Community
-You can play and share games, tools and music at [tic.computer](https://tic.computer/play).
-
-The community also hangs out and discusses on [Discord chat](https://discord.gg/DkD73dP).
+See [TIC-80](https://github.com/nesbox/TIC-80) for more information.
 
 # Contributing
-You are can contribute by issuing a bug or requesting a new feature on our [issues page](https://github.com/nesbox/tic.computer/issues).
-Keep in mind when engaging on a discussion to follow our [Code of Conduct](https://github.com/nesbox/TIC-80/blob/master/CODE_OF_CONDUCT.md).
+You are can contribute by issuing a bug or requesting a new feature on our [issues page](https://github.com/nesbox/TIC-MSX/issues).
+You can also contribute by reviewing or improving our [wiki](https://github.com/nesbox/TIC-MSX/wiki).
 
-You can also contribute by reviewing or improving our [wiki](https://github.com/nesbox/tic.computer/wiki).
-The [wiki](https://github.com/nesbox/tic.computer/wiki) holds TIC-80 documentation, code snippets and game development tutorials.
+See [TIC-80](https://github.com/nesbox/TIC-80) for more information.
 
 # Build instructions
 
@@ -60,7 +44,7 @@ The [wiki](https://github.com/nesbox/tic.computer/wiki) holds TIC-80 documentati
 - install `git`
 - run following commands in `cmd`
 ```
-git clone --recursive https://github.com/nesbox/TIC-80
+git clone --recursive https://github.com/humboldtjs/TIC-MSX
 cmake -G "Visual Studio 15 2017 Win64"
 ```
 - open `TIC-80.sln` and build
@@ -72,8 +56,8 @@ cmake -G "Visual Studio 15 2017 Win64"
 - install `cmake` (https://cmake.org)
 - run following commands in `terminal`
 ```
-git clone --recursive https://github.com/nesbox/TIC-80
-cd TIC-80
+git clone --recursive https://github.com/humboldtjs/TIC-MSX
+cd TIC-MSX
 cmake -G "MinGW Makefiles"
 mingw32-make -j4
 ```
@@ -83,7 +67,7 @@ mingw32-make -j4
 run the following commands in the Terminal
 ```
 sudo apt-get install git cmake libgtk-3-dev libgles1-mesa-dev libglu-dev -y
-git clone --recursive https://github.com/nesbox/TIC-80 && cd TIC-80
+git clone --recursive https://github.com/humboldtjs/TIC-MSX && cd TIC-MSX
 cd build
 cmake ..
 make -j4
@@ -100,7 +84,7 @@ sudo sh cmake-3.12.0-Linux-x86_64.sh --skip-license --prefix=/usr
 run the following commands in the Terminal
 ```
 sudo apt-get install git cmake libgtk-3-dev libglvnd-dev libglu1-mesa-dev freeglut3-dev -y
-git clone --recursive https://github.com/nesbox/TIC-80 && cd TIC-80
+git clone --recursive https://github.com/humboldtjs/TIC-MSX && cd TIC-MSX
 cd build
 cmake ..
 make -j4
@@ -112,8 +96,8 @@ install `Command Line Tools for Xcode` and `brew` package manager
 run the following commands in the Terminal
 ```
 brew install git cmake
-git clone --recursive https://github.com/nesbox/TIC-80
-cd TIC-80/build
+git clone --recursive https://github.com/humboldtjs/TIC-MSX && cd TIC-MSX
+cd build
 cmake ..
 make -j4
 ```
