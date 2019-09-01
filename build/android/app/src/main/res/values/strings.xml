@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">TIC-80</string>
+    <string name="app_name">TIC-MSX</string>
     <string name="enterFileName">Enter file name:</string>
     <string name="saveButtonText">Save</string>
     <string name="cancelButtonText">Cancel</string>

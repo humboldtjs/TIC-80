@@ -18,12 +18,12 @@ BEGIN
 		BLOCK "040904E4"
 		BEGIN
 			VALUE "CompanyName", "Nesbox"
-			VALUE "FileDescription", "TIC-80"
+			VALUE "FileDescription", "TIC-MSX"
 			VALUE "FileVersion", "0.70.6.0"
 			VALUE "InternalName", "tic80.exe"
 			VALUE "LegalCopyright", "http://tic.computer (C) 2017"
 			VALUE "OriginalFilename", "tic80.exe"
-			VALUE "ProductName", "TIC-80"
+			VALUE "ProductName", "TIC-MSX"
 			VALUE "ProductVersion", "0.70.6.0"
 		END
 	END

@@ -113,7 +113,7 @@ sapp_desc sokol_main(int argc, char* argv[]) {
         .cleanup_cb = app_cleanup,
         .width = 3 * TIC80_FULLWIDTH,
         .height = 3 * TIC80_FULLHEIGHT,
-        .window_title = "TIC-80 with Sokol renderer",
+        .window_title = "TIC-MSX with Sokol renderer",
         .ios_keyboard_resizes_canvas = true
     };
 }

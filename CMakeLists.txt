@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.3)
 
-project(TIC-80 C CXX)
+project(TIC-MSX C CXX)
 message("Building for target : ${CMAKE_SYSTEM_NAME}")
 
 if(ANDROID OR EMSCRIPTEN)
@@ -198,7 +198,7 @@ add_library(giflib STATIC ${GIFLIB_SRC})
 target_include_directories(giflib PRIVATE ${GIFLIB_DIR})
 
 ################################
-# TIC-80 core
+# TIC-MSX core
 ################################
 
 set(TIC80CORE_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -550,7 +550,7 @@ if(BUILD_DEMO_CARTS)
 endif()
 
 ################################
-# TIC-80 lib
+# TIC-MSX lib
 ################################
 
 set(TIC80LIB_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -605,7 +605,7 @@ if(BUILD_PRO)
 endif()
 
 ################################
-# TIC-80 app
+# TIC-MSX app
 ################################
 
 if(BUILD_SDL)
@@ -678,7 +678,7 @@ endforeach()
 endif()
 
 ################################
-# TIC-80 app (Sokol)
+# TIC-MSX app (Sokol)
 ################################
 
 if(BUILD_SOKOL)
