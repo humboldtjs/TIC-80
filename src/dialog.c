@@ -58,7 +58,7 @@ static void drawButton(Dialog* dlg, const char* label, s32 x, s32 y, u8 color, u
 	}
 
 	s32 size = tic->api.text(tic, label, 0, -TIC_FONT_HEIGHT, 0, false);
-	tic->api.text(tic, label, rect.x + (BtnWidth - size+1)/2, rect.y + (down?3:2), over ? overColor : color, false);
+	tic->api.text(tic, label, rect.x + (BtnWidth - size+1)/2, rect.y + (down?3:2) - 1, over ? overColor : color, false);
 
 	if(dlg->focus == id)
 	{
@@ -115,7 +115,7 @@ static void processKeyboard(Dialog* dlg)
 
 static void drawDialog(Dialog* dlg)
 {
-	enum {Width = TIC80_WIDTH/2, Height = TIC80_HEIGHT/2-TOOLBAR_SIZE};
+	enum {Width = TIC80_WIDTH/2, Height = TIC80_HEIGHT/2-TOOLBAR_SIZE - 4};
 
 	tic_mem* tic = dlg->tic;
 
@@ -183,8 +183,8 @@ static void drawDialog(Dialog* dlg)
 		}
 	}
 
-	drawButton(dlg, "YES", rect.x + (Width/2 - 26), rect.y + 45, (tic_color_dark_red), (tic_color_red), onYes, 0);
-	drawButton(dlg, "NO", rect.x + (Width/2 + 6), rect.y + 45, (tic_color_green), (tic_color_light_green), onNo, 1);
+	drawButton(dlg, "YES", rect.x + (Width/2 - 26), rect.y + TIC_FONT_HEIGHT*7 + 6, (tic_color_dark_red), (tic_color_red), onYes, 0);
+	drawButton(dlg, "NO", rect.x + (Width/2 + 6), rect.y + TIC_FONT_HEIGHT*7 + 6, (tic_color_green), (tic_color_light_green), onNo, 1);
 }
 
 static void tick(Dialog* dlg)

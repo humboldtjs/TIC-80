@@ -247,9 +247,9 @@ static void drawCursor(Console* console, s32 x, s32 y, u8 symbol)
 	bool inverse = console->cursor.delay || console->tickCounter % CONSOLE_CURSOR_BLINK_PERIOD < CONSOLE_CURSOR_BLINK_PERIOD / 2;
 
 	if(inverse)
-		console->tic->api.rect(console->tic, x-1, y-1, TIC_FONT_WIDTH+1, TIC_FONT_HEIGHT+1, CONSOLE_CURSOR_COLOR);
+		console->tic->api.rect(console->tic, x, y, TIC_ALTFONT_WIDTH, TIC_FONT_HEIGHT, CONSOLE_CURSOR_COLOR);
 
-	console->tic->api.draw_char(console->tic, symbol, x, y, inverse ? TIC_COLOR_BG : CONSOLE_FRONT_TEXT_COLOR, false);
+	console->tic->api.draw_char(console->tic, symbol, x, y, inverse ? TIC_COLOR_BG : CONSOLE_FRONT_TEXT_COLOR, true);
 }
 
 static void drawConsoleText(Console* console)
@@ -267,7 +267,7 @@ static void drawConsoleText(Console* console)
 		u8 color = *colorPointer++;
 
 		if(symbol)
-			console->tic->api.draw_char(console->tic, symbol, x * STUDIO_TEXT_WIDTH, y * STUDIO_TEXT_HEIGHT, color, false);
+			console->tic->api.draw_char(console->tic, symbol, x * STUDIO_TEXT_WIDTH, y * STUDIO_TEXT_HEIGHT, color, true);
 
 		if(++x == CONSOLE_BUFFER_WIDTH)
 		{
@@ -293,7 +293,7 @@ static void drawConsoleInputText(Console* console)
 		if(console->inputPosition == index)
 			drawCursor(console, x, y, symbol);
 		else
-			console->tic->api.draw_char(console->tic, symbol, x, y, CONSOLE_FRONT_TEXT_COLOR, false);
+			console->tic->api.draw_char(console->tic, symbol, x, y, CONSOLE_FRONT_TEXT_COLOR, true);
 
 		index++;
 

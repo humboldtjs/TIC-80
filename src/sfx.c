@@ -812,9 +812,9 @@ static void drawModeTabs(Sfx* sfx)
 		}
 
 		if (sfx->tab == Tabs[i])
-			sfx->tic->api.rect(sfx->tic, rect.x, rect.y, rect.w, rect.h, (tic_color_black));
+			sfx->tic->api.rect(sfx->tic, rect.x - 1, rect.y + 1, rect.w, rect.h, (tic_color_black));
 
-		drawBitIcon(rect.x, rect.y, Icons + i*Rows, (sfx->tab == Tabs[i] ? tic_color_white : over ? tic_color_gray : tic_color_light_blue));
+		drawBitIcon(rect.x - 1, rect.y + 1, Icons + i*Rows, (sfx->tab == Tabs[i] ? tic_color_white : over ? tic_color_dark_red : tic_color_blue));
 	}
 }
 
@@ -849,7 +849,7 @@ static void drawSfxToolbar(Sfx* sfx)
 		char buf[] = "C#4";
 		sprintf(buf, "%s%i", Notes[effect->note], effect->octave+1);
 
-		sfx->tic->api.fixed_text(sfx->tic, buf, x, y, (over ? tic_color_gray : tic_color_light_blue), false);
+		sfx->tic->api.fixed_text(sfx->tic, buf, x, y, (over ? tic_color_dark_red : tic_color_blue), false);
 	}
 
 	drawModeTabs(sfx);
@@ -862,14 +862,14 @@ static void envelopesTick(Sfx* sfx)
 
 	sfx->tic->api.clear(sfx->tic, TIC_COLOR_BG);
 
-	enum{ Gap = 3, Start = 40};
+	enum{ Gap = 8, Start = 40};
 	drawPiano(sfx, Start, TIC80_HEIGHT - PIANO_HEIGHT - Gap);
 	drawTopPanel(sfx, Start, TOOLBAR_SIZE + Gap);
 
 	drawSfxToolbar(sfx);
 	drawToolbar(sfx->tic, TIC_COLOR_BG, false);
 
-	drawCanvasTabs(sfx, Start-Gap, TOOLBAR_SIZE + Gap + TIC_FONT_HEIGHT+2);
+	drawCanvasTabs(sfx, Start-3, TOOLBAR_SIZE + Gap + TIC_FONT_HEIGHT+2);
 	if(sfx->canvasTab == SFX_WAVE_TAB)
 		drawWaveButtons(sfx, Start + CANVAS_WIDTH + Gap-1, TOOLBAR_SIZE + Gap + TIC_FONT_HEIGHT+2);
 
@@ -986,8 +986,8 @@ static void waveformTick(Sfx* sfx)
 	drawSfxToolbar(sfx);
 	drawToolbar(sfx->tic, TIC_COLOR_BG, false);
 
-	drawWaveformCanvas(sfx, 23, 11);
-	drawWaveformBar(sfx, 36, 110);
+	drawWaveformCanvas(sfx, 23, 19);
+	drawWaveformBar(sfx, 36, 118);
 }
 
 static void tick(Sfx* sfx)

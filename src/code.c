@@ -63,9 +63,9 @@ static void drawCursor(Code* code, s32 x, s32 y, char symbol)
 
 	if(inverse)
 	{
-		code->tic->api.rect(code->tic, x-1, y-1, (getFontWidth(code))+1, TIC_FONT_HEIGHT+1, getConfig()->theme.code.cursor);
+		code->tic->api.rect(code->tic, x, y, (getFontWidth(code)), TIC_FONT_HEIGHT, getConfig()->theme.code.cursor);
 
-		if(symbol)
+		if(symbol && symbol != 0x0a)
 			code->tic->api.draw_char(code->tic, symbol, x, y, getConfig()->theme.code.bg, code->altFont);
 	}
 }
@@ -1420,12 +1420,12 @@ static void drawCodeToolbar(Code* code)
 
 		bool active = i == code->mode - TEXT_EDIT_MODE  && i != 0;
 		if(active)
-			code->tic->api.rect(code->tic, rect.x, rect.y, Size, Size, (tic_color_blue));
+			code->tic->api.rect(code->tic, rect.x - 1, rect.y + 1, Size, Size, (tic_color_blue));
 
-		drawBitIcon(rect.x, rect.y, Icons + i*BITS_IN_BYTE, active ? (tic_color_white) : (over ? (tic_color_dark_red) : (tic_color_blue)));
+		drawBitIcon(rect.x - 1, rect.y + 1, Icons + i*BITS_IN_BYTE, active ? (tic_color_white) : (over ? (tic_color_dark_red) : (tic_color_blue)));
 	}
 
-	drawFontButton(code, TIC80_WIDTH - (Count+2) * Size, 1);
+//	drawFontButton(code, TIC80_WIDTH - (Count+2) * Size, 1);
 
 	drawToolbar(code->tic, getConfig()->theme.code.bg, false);
 }

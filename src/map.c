@@ -99,7 +99,7 @@ static s32 drawWorldButton(Map* map, s32 x, s32 y)
 			setStudioMode(TIC_WORLD_MODE);
 	}
 
-	drawBitIcon(x, y, WorldIcon, over ? (tic_color_dark_red) : (tic_color_blue));
+	drawBitIcon(x - 1, y + 1, WorldIcon, over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 
@@ -137,7 +137,7 @@ static s32 drawGridButton(Map* map, s32 x, s32 y)
 			map->canvas.grid = !map->canvas.grid;
 	}
 
-	drawBitIcon(x, y, GridIcon, map->canvas.grid ? (tic_color_dark_green) : over ? (tic_color_dark_red) : (tic_color_blue));
+	drawBitIcon(x - 1, y + 1, GridIcon, map->canvas.grid ? (tic_color_dark_green) : over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
@@ -192,7 +192,7 @@ static s32 drawSheetButton(Map* map, s32 x, s32 y)
 		}
 	}
 
-	drawBitIcon(rect.x, rect.y, sheetVisible(map) ? UpIcon : DownIcon, over ? (tic_color_dark_red) : (tic_color_blue));
+	drawBitIcon(rect.x - 1, rect.y + 1, sheetVisible(map) ? UpIcon : DownIcon, over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
@@ -218,7 +218,7 @@ static s32 drawToolButton(Map* map, s32 x, s32 y, const u8* Icon, s32 width, con
 		}
 	}
 
-	drawBitIcon(rect.x, rect.y, Icon, map->mode == mode ? (tic_color_black) : over ? (tic_color_dark_red) : (tic_color_blue));
+	drawBitIcon(rect.x - 1, rect.y + 1, Icon, map->mode == mode ? (tic_color_black) : over ? (tic_color_dark_red) : (tic_color_blue));
 
 	return x;
 }
