@@ -63,11 +63,37 @@ static void drawSelection(Sprite* sprite, s32 x, s32 y, s32 w, s32 h)
 	enum{Step = 3};
 	u8 color = (tic_color_white);
 
-	s32 index = sprite->tickCounter / 10;
+	s32 index = sprite->tickCounter / 5;
 	for(s32 i = x; i < (x+w); i++) 		{ sprite->tic->api.pixel(sprite->tic, i, y, index++ % Step ? color : 0);} index++;
 	for(s32 i = y; i < (y+h); i++) 		{ sprite->tic->api.pixel(sprite->tic, x + w-1, i, index++ % Step ? color : 0);} index++;
 	for(s32 i = (x+w-1); i >= x; i--) 	{ sprite->tic->api.pixel(sprite->tic, i, y + h-1, index++ % Step ? color : 0);} index++;
 	for(s32 i = (y+h-1); i >= y; i--) 	{ sprite->tic->api.pixel(sprite->tic, x, i, index++ % Step ? color : 0);}
+}
+
+static void drawColorClash(Sprite* sprite, s32 x, s32 y, s32 w, s32 h)
+{
+	enum{Step = 3};
+	u8 color = (tic_color_dark_red);
+	u8 altColor = (tic_color_brown);
+
+	s32 index = sprite->tickCounter / 10;
+	for(s32 i = x; i < (x+w); i++) 		{ sprite->tic->api.pixel(sprite->tic, i, y, index++ % Step ? color : altColor);} index++;
+	for(s32 i = y; i < (y+h); i++) 		{ sprite->tic->api.pixel(sprite->tic, x + w-1, i, index++ % Step ? color : altColor);} index++;
+	for(s32 i = (x+w-1); i >= x; i--) 	{ sprite->tic->api.pixel(sprite->tic, i, y + h-1, index++ % Step ? color : altColor);} index++;
+	for(s32 i = (y+h-1); i >= y; i--) 	{ sprite->tic->api.pixel(sprite->tic, x, i, index++ % Step ? color : altColor);}
+}
+
+static void drawTransparent(Sprite* sprite, s32 x, s32 y, s32 w, s32 h)
+{
+	enum{Step = 3};
+	u8 color = (tic_color_blue);
+
+	s32 index = sprite->tickCounter / 10;
+	for (u8 j = 0; j < h; j++) {
+		for (u8 i = 0; i < w; i++) {
+			sprite->tic->api.pixel(sprite->tic, i + x, j + y, (i + j + x + y) % 4 > 2 ? color : 0);
+		}
+	}
 }
 
 static tic_rect getSpriteRect(Sprite* sprite)
@@ -388,15 +414,37 @@ static void drawCanvasOvr(Sprite* sprite, s32 x, s32 y)
 	tic_rect rect = getSpriteRect(sprite);
 	s32 r = rect.x + rect.w;
 	s32 b = rect.y + rect.h;
+	bool modeFront = sprite->index >= TIC_BANK_SPRITES;
+	u8 colorLimit = modeFront ? 1 : 2;
+	bool countTransparent = !modeFront;
 
 	const s32 Size = CANVAS_SIZE / sprite->size;
+	const s32 Chars = sprite->size / 8;
 
-	for(s32 sy = rect.y, j = y; sy < b; sy++, j += Size)
-		for(s32 sx = rect.x, i = x; sx < r; sx++, i += Size)
-			sprite->tic->api.rect(sprite->tic, i, j, Size, Size, getSheetPixel(sprite, sx, sy));
+	const bool selectActive = hasCanvasSelection(sprite);
 
+	for(s32 sy = rect.y, j = y; sy < b; sy++, j += Size) {
+		for(s32 sxx = 0; sxx < Chars; sxx++) {
+			u8 colorCount[] = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+			for(s32 sx = rect.x + sxx * 8, i = x + sxx * 8 * Size; sx < rect.x + sxx * 8 + 8; sx++, i += Size) {
+				u8 color = getSheetPixel(sprite, sx, sy);
+				colorCount[color]++;
+				sprite->tic->api.rect(sprite->tic, i, j, Size, Size, color);
+				if (color == 0)
+					drawTransparent(sprite, i, j, Size, Size);
+			}
+			u8 numColors = 0;
+			for (u8 i = countTransparent ? 0 : 1; i < 16; i++) {
+				if (colorCount[i] > 0) numColors++;
+			}
+			if (!selectActive && Size > 2 && numColors > colorLimit) {
+				drawColorClash(sprite, x + sxx * 8 * Size + (sxx > 0 ? -1 : 0), y + (sy - rect.y) * Size - 1, 
+					8 * Size + (sxx > 0 ? 1 : 0), 1 * Size + 1);
+			}
+		}
+	}
 
-	if(hasCanvasSelection(sprite))
+	if(selectActive)
 		drawSelection(sprite, x + sprite->select.rect.x * Size - 1, y + sprite->select.rect.y * Size - 1, 
 			sprite->select.rect.w * Size + 2, sprite->select.rect.h * Size + 2);
 
