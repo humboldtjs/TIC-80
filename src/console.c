@@ -2839,7 +2839,7 @@ static void tick(Console* console)
 			loadDemo(console, SquirrelScript);
 #endif			
 
-			printBack(console, "\n hello! type ");
+			printBack(console, "\nhello! type ");
 			printFront(console, "help");
 			printBack(console, " for help\n");
 
@@ -3163,9 +3163,9 @@ void initConsole(Console* console, tic_mem* tic, FileSystem* fs, Config* config,
 #endif
 	}
 
-	printFront(console, "\n " TIC_NAME_FULL "");
-	printBack(console, " " TIC_VERSION_LABEL "\n");
-	printBack(console, " " TIC_COPYRIGHT "\n");
+	printFront(console, TIC_NAME_FULL " ");
+	printBack(console, TIC_VERSION_LABEL "\n");
+	printBack(console, TIC_COPYRIGHT "\n");
 
 	if(argc > 1)
 	{
