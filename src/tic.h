@@ -47,12 +47,14 @@
 #define TIC_PACKAGE "com.nesbox.tic"
 #define TIC_NAME "TIC-MSX"
 #define TIC_NAME_FULL TIC_NAME " tiny computer"
+#define TIC_VRAM_TEXT "VIDEO RAM: 32Kbytes"
+#define TIC_RAM_TEXT "USER  RAM:128Kbytes"
 #define TIC_TITLE TIC_NAME_FULL " " TIC_VERSION_LABEL
 #define TIC_HOST "tic.computer"
 #define TIC_COPYRIGHT "http://" TIC_HOST " (C) 2017"
 
 #define TIC_VRAM_SIZE (32*1024) //32K
-#define TIC_RAM_SIZE (TIC_VRAM_SIZE+128*1024) //32K+120K
+#define TIC_RAM_SIZE (TIC_VRAM_SIZE+128*1024) //32K+128K
 #define TIC_FONT_WIDTH 8
 #define TIC_FONT_HEIGHT 8
 #define TIC_ALTFONT_WIDTH 6
